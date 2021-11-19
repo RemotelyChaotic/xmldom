@@ -1234,6 +1234,75 @@ try{
 }catch(e){//ie8
 }
 
+// polyfil from https://github.com/zhetengbiji/Element-innerHTML-polyfill
+Object.defineProperty(Element.prototype, 'innerHTML', {
+    get: function() {
+        var output = [];
+        var childNode = this.firstChild;
+        var serializer = new XMLSerializer();
+        while(childNode) {
+            output.push(serializer.serializeToString(childNode));
+            childNode = childNode.nextSibling;
+        }
+        return output.join('');
+    },
+    set: function(text) {
+        while(this.firstChild) {
+            this.removeChild(this.firstChild);
+        }
+        var parser = new DOMParser();
+        parser.async = false;
+        var xml = '<root>' + text + '</root>';
+        var element;
+        var childNode;
+        try {
+            element = parser.parseFromString(xml, 'text/xml').documentElement;
+            childNode = element.firstChild;
+            while(childNode) {
+                this.appendChild(this.ownerDocument.importNode(childNode, true));
+                childNode = childNode.nextSibling;
+            }
+        } catch(e) {
+            throw new Error('Error parsing XML string');
+        };
+    }
+});
+
+/*
+ * outerHTML.js
+ *   Cross-browser full HTMLElement.outerHTML implementation.
+ *
+ * 2011-11-14
+ *
+ * By Eli Grey, http://eligrey.com
+ * Public Domain.
+ * NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+ */
+Object.defineProperty(Element.prototype, 'outerHTML', {
+    get: function() {
+        var node = this;
+        return node.toString();
+    },
+    set: function(text) {
+        var
+              node = this
+            , parent = node.parentNode
+            , child
+            , container = node.ownerDocument.clone()
+        ;
+        if (parent === null) {
+            DOMException.code = DOMException.NOT_FOUND_ERR;
+            throw DOMException;
+        }
+        container.innerHTML = html;
+        while ((child = container.firstChild)) {
+            parent.insertBefore(child, node);
+        }
+        parent.removeChild(node);
+    }
+});
+
+
 //if(typeof require == 'function'){
     export { DOMImplementation, XMLSerializer }
 //}
