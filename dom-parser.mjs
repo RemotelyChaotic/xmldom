@@ -16,7 +16,7 @@ DOMParser.prototype.parseFromString = function(source,mimeType){
 	var locator = options.locator;
 	var defaultNSMap = options.xmlns||{};
 	var isHTML = /\/x?html?$/.test(mimeType);//mimeType.toLowerCase().indexOf('html') > -1;
-  	var entityMap = isHTML?htmlEntity.entityMap:{'lt':'<','gt':'>','amp':'&','quot':'"','apos':"'"};
+    var entityMap_ = isHTML?entityMap:{'lt':'<','gt':'>','amp':'&','quot':'"','apos':"'"};
 	if(locator){
 		domBuilder.setDocumentLocator(locator)
 	}
@@ -28,7 +28,7 @@ DOMParser.prototype.parseFromString = function(source,mimeType){
 	}
 	defaultNSMap.xml = defaultNSMap.xml || 'http://www.w3.org/XML/1998/namespace';
 	if(source){
-		sax.parse(source,defaultNSMap,entityMap);
+        sax.parse(source,defaultNSMap,entityMap_);
 	}else{
 		sax.errorHandler.error("invalid doc source");
 	}

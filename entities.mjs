@@ -1,4 +1,4 @@
-const entityMap = {
+export const entityMap = {
        lt: '<',
        gt: '>',
        amp: '&',
@@ -241,5 +241,4 @@ const entityMap = {
        hearts: "♥",
        diams: "♦"
 };
-export { entityMap }
 //for(var  n in exports.entityMap){console.log(exports.entityMap[n].charCodeAt())}
