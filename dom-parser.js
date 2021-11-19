@@ -1,3 +1,8 @@
+import { entityMap } from "./entities.js";
+import { XMLReader } from "./sax.js";
+import { DOMImplementation, XMLSerializer } from "./dom.js";
+
+
 function DOMParser(options){
 	this.options = options ||{locator:{}};
 	
@@ -244,9 +249,9 @@ function appendElement (hander,node) {
 }//appendChild and setAttributeNS are preformance key
 
 //if(typeof require == 'function'){
-var htmlEntity = require('./entities');
-var XMLReader = require('./sax').XMLReader;
-var DOMImplementation = exports.DOMImplementation = require('./dom').DOMImplementation;
-exports.XMLSerializer = require('./dom').XMLSerializer ;
-exports.DOMParser = DOMParser;
+export {
+    DOMImplementation,
+    XMLSerializer,
+    DOMParser
+}
 //}

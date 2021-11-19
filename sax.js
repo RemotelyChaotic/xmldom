@@ -612,5 +612,5 @@ function split(source,start){
 	}
 }
 
-exports.XMLReader = XMLReader;
+export { XMLReader }
 

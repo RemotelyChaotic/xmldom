@@ -1235,6 +1235,5 @@ try{
 }
 
 //if(typeof require == 'function'){
-	exports.DOMImplementation = DOMImplementation;
-	exports.XMLSerializer = XMLSerializer;
+    export { DOMImplementation, XMLSerializer }
 //}
