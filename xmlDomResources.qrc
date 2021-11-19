@@ -1,9 +1,9 @@
 <RCC>
     <qresource prefix="/xmldom">
         <file>__package__.js</file>
-        <file>dom.js</file>
-        <file>dom-parser.js</file>
-        <file>entities.js</file>
-        <file>sax.js</file>
+        <file>dom.mjs</file>
+        <file>dom-parser.mjs</file>
+        <file>entities.mjs</file>
+        <file>sax.mjs</file>
     </qresource>
 </RCC>

@@ -1,6 +1,6 @@
-import { entityMap } from "./entities.js";
-import { XMLReader } from "./sax.js";
-import { DOMImplementation, XMLSerializer } from "./dom.js";
+import { entityMap } from "./entities.mjs";
+import { XMLReader } from "./sax.mjs";
+import { DOMImplementation, XMLSerializer } from "./dom.mjs";
 
 
 function DOMParser(options){
